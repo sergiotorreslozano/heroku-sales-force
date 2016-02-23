@@ -7,9 +7,9 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = SpringBootHerokuApplication.class)
+@SpringApplicationConfiguration(classes = HerokuSalesForceApplication.class)
 @WebAppConfiguration
-public class SpringBootHerokuApplicationTests {
+public class HerokuSalesForceApplicationTests {
 
 	@Test
 	public void contextLoads() {
