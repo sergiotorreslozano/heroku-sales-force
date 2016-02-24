@@ -1,4 +1,6 @@
-package com.st.domain;
+package com.st.domain.salesforce;
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,29 +10,33 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(schema = "public")
-public class Users {
+@Table(schema = "salesforce")
+public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", nullable = false)
 	private Long id;
-
 	@Column(name = "name", nullable = false)
 	private String name;
+	@Column(name = "lastChange", nullable = false)
+	private Date lastChange;
 
 	/**
 	 * 
 	 */
-	public Users() {
+	public User() {
+		super();
 	}
 
 	/**
 	 * @param name
+	 * @param lastChange
 	 */
-	public Users(String name) {
+	public User(String name, Date lastChange) {
 		super();
 		this.name = name;
+		this.lastChange = lastChange;
 	}
 
 	/**
@@ -61,6 +67,21 @@ public class Users {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	/**
+	 * @return the lastChange
+	 */
+	public Date getLastChange() {
+		return lastChange;
+	}
+
+	/**
+	 * @param lastChange
+	 *            the lastChange to set
+	 */
+	public void setLastChange(Date lastChange) {
+		this.lastChange = lastChange;
 	}
 
 }
