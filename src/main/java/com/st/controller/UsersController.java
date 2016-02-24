@@ -22,7 +22,7 @@ public class UsersController {
 		return usersRepository.findAll();
 	}
 	
-	@RequestMapping(value = "/api/{name}/users", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/users/{name}", method = RequestMethod.POST)
 	public Users addUser(@PathVariable String name) {
 		Users entity = new Users(name);
 		return usersRepository.save(entity);

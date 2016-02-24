@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(schema = "salesforce")
+@Table(schema = "salesforcedev")
 public class Profile {
 
 	@Id
