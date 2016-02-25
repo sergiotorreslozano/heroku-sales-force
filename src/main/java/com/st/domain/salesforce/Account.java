@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 @Entity
 @Table(schema = "salesforcedev")
 public class Account {
@@ -23,8 +25,7 @@ public class Account {
 
 	@Column(name = "name", nullable = false)
 	private String name;
-	
-	
+
 	@Column(name = "lastmodifieddate")
 	private Date lastmodifieddate;
 
@@ -33,6 +34,7 @@ public class Account {
 
 	@Column(name = "_hc_lastop")
 	private String _hc_lastop;
+
 	/**
 	 * 
 	 */
@@ -166,6 +168,9 @@ public class Account {
 	public void set_hc_lastop(String _hc_lastop) {
 		this._hc_lastop = _hc_lastop;
 	}
-	
+
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
+	}
 
 }

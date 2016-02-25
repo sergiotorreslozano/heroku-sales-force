@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,8 @@ import com.st.repository.AccountRepository;
 @RestController
 public class AccountController {
 
+	private final static Logger logger = LoggerFactory.getLogger(AccountController.class);
+
 	@Autowired
 	private AccountRepository accountRepository;
 
@@ -30,13 +34,16 @@ public class AccountController {
 
 	@RequestMapping(value = "/api/accounts", method = RequestMethod.POST)
 	public ResponseEntity<Account> addAccount(@RequestBody Account account) {
+		logger.debug("account: " + account.toString());
 		if (StringUtils.isEmpty(account.getName())) {
+			logger.debug("Account must have a name. Returning error: " + HttpStatus.BAD_REQUEST);
 			return new ResponseEntity<Account>(HttpStatus.BAD_REQUEST);
 		}
 		account.setCreateddate(new Date());
 		Account entity = accountRepository.save(account);
+		logger.debug("account saved: " + entity.toString());
 		if (HC_LASTOP.equals(entity.get_hc_lastop())) {
-			return new ResponseEntity<Account>(entity, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<Account>(entity, HttpStatus.CONFLICT);
 		}
 		ResponseEntity<Account> response = new ResponseEntity<>(entity, HttpStatus.OK);
 		return response;

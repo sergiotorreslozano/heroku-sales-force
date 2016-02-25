@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 @Entity
 @Table(schema = "salesforcedev")
 public class Profile {
@@ -63,5 +65,8 @@ public class Profile {
 		this.name = name;
 	}
 
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
+	}
 
 }
