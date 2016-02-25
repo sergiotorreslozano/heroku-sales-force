@@ -21,6 +21,8 @@ public class AccountController {
 	@Autowired
 	private AccountRepository accountRepository;
 
+	private final static String HC_LASTOP = "FAILED";
+
 	@RequestMapping(value = "/api/accounts", method = RequestMethod.GET)
 	public List<Account> findAllAccounts() {
 		return accountRepository.findAll();
@@ -31,8 +33,12 @@ public class AccountController {
 		if (StringUtils.isEmpty(account.getName())) {
 			return new ResponseEntity<Account>(HttpStatus.BAD_REQUEST);
 		}
-		Account entity = new Account(account.getName(), new Date());
-		ResponseEntity<Account> response = new ResponseEntity<>(accountRepository.save(entity), HttpStatus.OK);
+		account.setCreateddate(new Date());
+		Account entity = accountRepository.save(account);
+		if (HC_LASTOP.equals(entity.get_hc_lastop())) {
+			return new ResponseEntity<Account>(entity, HttpStatus.BAD_REQUEST);
+		}
+		ResponseEntity<Account> response = new ResponseEntity<>(entity, HttpStatus.OK);
 		return response;
 	}
 

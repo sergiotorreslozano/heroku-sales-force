@@ -28,6 +28,11 @@ public class Account {
 	@Column(name = "lastmodifieddate")
 	private Date lastmodifieddate;
 
+	@Column(name = "_hc_err")
+	private String _hc_err;
+
+	@Column(name = "_hc_lastop")
+	private String _hc_lastop;
 	/**
 	 * 
 	 */
@@ -54,6 +59,22 @@ public class Account {
 		this.createddate = createddate;
 		this.name = name;
 		this.lastmodifieddate = lastmodifieddate;
+	}
+
+	/**
+	 * @param createddate
+	 * @param name
+	 * @param lastmodifieddate
+	 * @param _hc_err
+	 * @param _hc_lastop
+	 */
+	public Account(Date createddate, String name, Date lastmodifieddate, String _hc_err, String _hc_lastop) {
+		super();
+		this.createddate = createddate;
+		this.name = name;
+		this.lastmodifieddate = lastmodifieddate;
+		this._hc_err = _hc_err;
+		this._hc_lastop = _hc_lastop;
 	}
 
 	/**
@@ -114,6 +135,36 @@ public class Account {
 	 */
 	public void setLastmodifieddate(Date lastmodifieddate) {
 		this.lastmodifieddate = lastmodifieddate;
+	}
+
+	/**
+	 * @return the _hc_err
+	 */
+	public String get_hc_err() {
+		return _hc_err;
+	}
+
+	/**
+	 * @param _hc_err
+	 *            the _hc_err to set
+	 */
+	public void set_hc_err(String _hc_err) {
+		this._hc_err = _hc_err;
+	}
+
+	/**
+	 * @return the _hc_lastop
+	 */
+	public String get_hc_lastop() {
+		return _hc_lastop;
+	}
+
+	/**
+	 * @param _hc_lastop
+	 *            the _hc_lastop to set
+	 */
+	public void set_hc_lastop(String _hc_lastop) {
+		this._hc_lastop = _hc_lastop;
 	}
 	
 
