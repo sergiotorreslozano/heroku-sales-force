@@ -117,26 +117,23 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>jaxb2-maven-plugin</artifactId>
-				<version>2.2</version>
-				<executions>
-					<execution>
-						<id>xjc</id>
-						<goals>
-							<goal>xjc</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<sources>
-						<source>src/main/resources/schemas/loginResponse.xsd</source>
-						<source>src/main/resources/schemas/login.xsd</source>
-					</sources>
-					<!-- The package of your generated sources -->
-					<packageName>com.st.dto.schemas</packageName>
-				</configuration>
-			</plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.13.1</version>
+                <executions>
+                    <execution>
+                    	<id>generate-sources</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                        	<schemaDirectory>src/main/resources/schemas</schemaDirectory>
+                        	<generatePackage>com.st.dto.schemas</generatePackage>
+                        	<generateDirectory>src/main/java</generateDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 		</plugins>
 	</build>
 
