@@ -1,9 +1,11 @@
 package com.st.repository;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +17,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.st.HerokuSalesForceApplication;
+import com.st.domain.salesforce.Account;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = HerokuSalesForceApplication.class)
@@ -41,9 +44,21 @@ public class AccountRepositoryTest {
 		calendar.set(Calendar.MONTH, 1);
 		calendar.set(Calendar.YEAR, 2000);
 		Date date = calendar.getTime();
+		List<Account> accounts = accountRepository.findByLastmodifieddateAfter(date);
+		assertNotNull(accounts);
+	}
 
-		// List<Account> accounts = accountRepository.findByLastmodifieddate();
-
+	@Test
+	@Transactional
+	public void findAccountsByCreatedDate() {
+		Calendar calendar = Calendar.getInstance();
+		calendar.clear();
+		calendar.set(Calendar.DAY_OF_MONTH, 1);
+		calendar.set(Calendar.MONTH, 1);
+		calendar.set(Calendar.YEAR, 2000);
+		Date date = calendar.getTime();
+		List<Account> accounts = accountRepository.findByCreateddateAfter(date);
+		assertNotNull(accounts);
 	}
 
 }
