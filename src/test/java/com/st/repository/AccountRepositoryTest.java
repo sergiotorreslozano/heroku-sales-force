@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,11 @@ public class AccountRepositoryTest {
 	@Transactional
 	@Rollback(true)
 	public void deleteAccountByName() {
-		Integer id = accountRepository.deleteByName("someCompany");
-		assertTrue("deleteByName is working", 1 == id);
+		List<Account> accounts = accountRepository.findAll();
+		if (!CollectionUtils.isEmpty(accounts)) {
+			Integer id = accountRepository.deleteByName(accounts.get(0).getName());
+			assertTrue("deleteByName is working", 1 == id);
+		}
 	}
 
 	@Test
@@ -43,6 +47,7 @@ public class AccountRepositoryTest {
 		calendar.set(Calendar.DAY_OF_MONTH, 1);
 		calendar.set(Calendar.MONTH, 1);
 		calendar.set(Calendar.YEAR, 2000);
+		// setting year 2000 should guarantee to get at least one account
 		Date date = calendar.getTime();
 		List<Account> accounts = accountRepository.findByLastmodifieddateAfter(date);
 		assertNotNull(accounts);
@@ -56,6 +61,7 @@ public class AccountRepositoryTest {
 		calendar.set(Calendar.DAY_OF_MONTH, 1);
 		calendar.set(Calendar.MONTH, 1);
 		calendar.set(Calendar.YEAR, 2000);
+		// setting year 2000 should guarantee to get at least one account
 		Date date = calendar.getTime();
 		List<Account> accounts = accountRepository.findByCreateddateAfter(date);
 		assertNotNull(accounts);

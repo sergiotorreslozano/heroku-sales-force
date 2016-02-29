@@ -83,6 +83,10 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.4</version>
 		</dependency>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+		</dependency>
 
 	</dependencies>
 
@@ -117,23 +121,23 @@
 				</executions>
 			</plugin>
 			<plugin>
-                <groupId>org.jvnet.jaxb2.maven2</groupId>
-                <artifactId>maven-jaxb2-plugin</artifactId>
-                <version>0.13.1</version>
-                <executions>
-                    <execution>
-                    	<id>generate-sources</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                        	<schemaDirectory>src/main/resources/schemas</schemaDirectory>
-                        	<generatePackage>com.st.dto.schemas</generatePackage>
-                        	<generateDirectory>src/main/java</generateDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<version>0.13.1</version>
+				<executions>
+					<execution>
+						<id>generate-sources</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<schemaDirectory>src/main/resources/schemas</schemaDirectory>
+							<generatePackage>com.st.dto.schemas</generatePackage>
+							<generateDirectory>src/main/java</generateDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
