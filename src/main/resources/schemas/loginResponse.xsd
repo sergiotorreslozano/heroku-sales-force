@@ -1,0 +1,48 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="urn:partner.soap.sforce.com" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="loginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="result">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="metadataServerUrl"/>
+              <xs:element type="xs:string" name="passwordExpired"/>
+              <xs:element type="xs:string" name="sandbox"/>
+              <xs:element type="xs:string" name="serverUrl"/>
+              <xs:element type="xs:string" name="sessionId"/>
+              <xs:element type="xs:string" name="userId"/>
+              <xs:element name="userInfo">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="accessibilityMode"/>
+                    <xs:element type="xs:string" name="currencySymbol"/>
+                    <xs:element type="xs:int" name="orgAttachmentFileSizeLimit"/>
+                    <xs:element type="xs:string" name="orgDefaultCurrencyIsoCode"/>
+                    <xs:element type="xs:string" name="orgDisallowHtmlAttachments"/>
+                    <xs:element type="xs:string" name="orgHasPersonAccounts"/>
+                    <xs:element type="xs:string" name="organizationId"/>
+                    <xs:element type="xs:string" name="organizationMultiCurrency"/>
+                    <xs:element type="xs:string" name="organizationName"/>
+                    <xs:element type="xs:string" name="profileId"/>
+                    <xs:element type="xs:string" name="roleId" nillable="true"/>
+                    <xs:element type="xs:short" name="sessionSecondsValid"/>
+                    <xs:element type="xs:string" name="userDefaultCurrencyIsoCode" nillable="true"/>
+                    <xs:element type="xs:string" name="userEmail"/>
+                    <xs:element type="xs:string" name="userFullName"/>
+                    <xs:element type="xs:string" name="userId"/>
+                    <xs:element type="xs:string" name="userLanguage"/>
+                    <xs:element type="xs:string" name="userLocale"/>
+                    <xs:element type="xs:string" name="userName"/>
+                    <xs:element type="xs:string" name="userTimeZone"/>
+                    <xs:element type="xs:string" name="userType"/>
+                    <xs:element type="xs:string" name="userUiSkin"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

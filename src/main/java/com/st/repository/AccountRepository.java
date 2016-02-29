@@ -6,4 +6,6 @@ import com.st.domain.salesforce.Account;
 
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
+	Integer deleteByName(String name);
+
 }
