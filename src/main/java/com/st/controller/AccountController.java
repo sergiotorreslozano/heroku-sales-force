@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.st.domain.salesforce.Account;
@@ -28,8 +29,14 @@ public class AccountController {
 	private final static String HC_LASTOP = "FAILED";
 
 	@RequestMapping(value = "/api/accounts", method = RequestMethod.GET)
-	public List<Account> findAllAccounts() {
-		return accountRepository.findAll();
+	public List<Account> findAllAccounts(@RequestParam(value = "createddate", required = false) Date createddate) {
+		List<Account> accounts = null;
+		if (createddate != null) {
+			accounts = accountRepository.findByCreateddateAfter(createddate);
+		} else {
+			accounts = accountRepository.findAll();
+		}
+		return accounts;
 	}
 
 	@RequestMapping(value = "/api/accounts", method = RequestMethod.POST)
