@@ -4,6 +4,7 @@ package com.st.configuration;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,8 @@ import org.springframework.context.annotation.Configuration;
 public class DatabaseConfig {
 
 	private final static Logger logger = LoggerFactory.getLogger(DatabaseConfig.class);
+
+	private final static int USER_PASSWORD_PARAMS = 2;
 
 	@Bean
 	public DataSource postgresDataSource() {
@@ -27,8 +30,13 @@ public class DatabaseConfig {
 			return null;
 		}
 
+		// For travis, as DB has no password.
 		String username = dbUri.getUserInfo().split(":")[0];
-		String password = dbUri.getUserInfo().split(":")[1];
+		String password = null;
+		if (USER_PASSWORD_PARAMS == CollectionUtils.size(dbUri.getUserInfo().split(":"))) {
+			password = dbUri.getUserInfo().split(":")[1];
+		}
+
 		String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
 
 		logger.debug("Data base properties");
