@@ -8,3 +8,7 @@ deploy:
   app: heroku-sales-force
   on:
     repo: sergiotorreslozano/heroku-sales-force
+services:
+  - postgresql
+addons:
+  postgresql: "9.4"
