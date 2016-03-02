@@ -15,4 +15,4 @@ addons:
 before_script:
   - psql -c 'create database herokusalesforcedb;' -U postgres
   - psql -c 'create schema salesforcedev;' -U postgres
-  - psql -c 'alter role postgres with password 'postgres';'
+  - psql -c "alter role postgres with password 'postgres';"
