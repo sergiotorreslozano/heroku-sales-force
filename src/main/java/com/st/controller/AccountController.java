@@ -29,7 +29,8 @@ public class AccountController {
 	private final static String HC_LASTOP = "FAILED";
 
 	@RequestMapping(value = "/api/accounts", method = RequestMethod.GET)
-	public List<Account> findAllAccounts(@RequestParam(value = "createddate", required = false) Date createddate) {
+	public List<Account> findAllAccounts(
+			@RequestParam(value = "createddate", required = false) Date createddate) {
 		List<Account> accounts = null;
 		if (createddate != null) {
 			accounts = accountRepository.findByCreateddateAfter(createddate);

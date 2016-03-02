@@ -5,6 +5,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,7 +48,9 @@ public class DatabaseConfig {
 		dataSource.setDriverClassName("org.postgresql.Driver");
 		dataSource.setUrl(dbUrl);
 		dataSource.setUsername(username);
-		dataSource.setPassword(password);
+		if (StringUtils.isNotEmpty(password)) {
+			dataSource.setPassword(password);
+		}
 		dataSource.setTestOnBorrow(true);
 		dataSource.setTestWhileIdle(true);
 		dataSource.setTestOnReturn(true);
