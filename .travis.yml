@@ -33,4 +33,4 @@ before_script:
               );
               ALTER TABLE salesforcedev.account
                 OWNER TO postgres;
-          '
+          ' -U postgres
