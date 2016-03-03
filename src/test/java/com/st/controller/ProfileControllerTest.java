@@ -8,6 +8,10 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
+import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -20,6 +24,9 @@ import com.st.HerokuSalesForceApplication;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = HerokuSalesForceApplication.class)
 @WebAppConfiguration
+@ActiveProfiles("test")
+@SqlGroup({ @Sql(value = "/test-schema.sql"),
+		@Sql(value = "/test-clean-up.sql", executionPhase = ExecutionPhase.AFTER_TEST_METHOD) })
 public class ProfileControllerTest {
 
 	@Autowired
