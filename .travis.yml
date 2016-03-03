@@ -4,33 +4,21 @@ jdk:
 deploy:
   provider: heroku
   api_key:
-    secure: b2En/KdOkApXf029nQcokiA/05YBJdo3M9oAnxuS8rFK6HO5ckieJB3Uic+znYcSeP2avbbVLCeevbVwHUFcx0XWJUNrCGP10kseG8jjiQicU++WtlROEKNthJPfoVtcgj5b1LoFTjgqdcBRlEMfQjTvzNxhXRHva0UcEA93NYbVLTZOb8SQ0+rugwHadmiBxXM07SoB8sP6RHK2urrCxUHxFuSV7sxPhpnT5xs7SeX5Yjo+4gez/tyf+ZiN8h0LIxPh4ZK+x/ydzfwZI0x9Tx8sBIWz4zt85TMktzTNPqJVK8+EhfpNoof61CbAYaD95FhVo3L7xZdlW56gR0d21b0j0AfvLWdE4TtJjj3tVwDlAbbrJUtmk9xmyzledOX8Ss6mirngrkUZomERBmTS0LQOcqb0Qhf7kJCeB5e2LGf1ts6xctAG+owXTv9u3SSw6f/FTBSOOTIkjJ7MEGSv1VzFhRRj8YGmx8/jkMl4CRLs6iC2eoQe8Inq499gSvjClr6TsRozCr0PjPq7qoxmtOuoLGbZAu7g/w8VpuywCR04d63e+gbbtoGA57oOozTmoPTOqK55Sv5meyO9aAhpK0cIUhLN9a4XUd/BqCsWu3G85f7KWf2OjGkJ5hrXyLxciR2sdwzM3hQ3k4NaB7JG88aDu6nzB31Eg4uPW5NN03U=
+    secure: eU16HZITLkJVGlsw6/KyLjGVf309AVR3YUHY0/BGunVtZJOLsfD/pnXHwbMkFSLL8XVoulhwxap7NEXtjOLP7ckbEculqqRbgL0/slVs8MLeqkvYdKuID7y7H/onCKfL0/+dEjaKw4o6jBcfs3OgyudbNz2o8ZrgaEx8KHS9CX108m1GpCBgIZ8sn5ZkAQm+kjzFyxgOYhzqO5Bzyc5ZEazpWXcuTwyVjG7MM4YqR4/fyJoQjjxvXPwI0XxmvRPoD2xQYzqzAgD0qwXN3Nz34i0HgHBkKSDcFwphL7CociFSecNXrurUcl9AEYalsbHF8UuvKzMQoOpafcVkumEmteO88NGF70cz1LogChuIpOxto+wPcva6s0aPfI3pvlk2T/o/qYWabVCMmv9e8X6tGKSLPlQveGc+WE/buzaIIaujR9hNnTlefls1C4HFpxJsVjt0uof+DaTxrZSaoem3KJG41JVzf4RLQ8YbJrlTHW3LqgzmDLkwScuTh0wQITyesmZwBUI5cw0e8won/9/94YF+aLazBLVghyTmuh+DLib7pUECj1Jhkb1GWbvxuVxwTcJM1a9pavSPJBpmVBMbfeOkyJ+bDRrsDwxQBbwi3nNXKv9olwiZ36V88lizcAnmemGSEBFfEXx/3p8aykYg/spLBkMGwJq9m1tl3zgIetk=
   app: heroku-sales-force
   on:
     repo: sergiotorreslozano/heroku-sales-force
 services:
-  - postgresql
+- postgresql
 addons:
-  postgresql: "9.4"
+  postgresql: '9.4'
 before_script:
-  - psql -c 'create database herokusalesforcedb;' -U postgres
-  - psql -c 'create schema if not exists public;' -U postgres
-  - psql -c 'create schema if not exists salesforcedev;' -U postgres
-  - psql -c "alter role postgres with password 'postgres';"
-  - psql -c '
-              CREATE TABLE salesforcedev.account
-              (
-                id bigint NOT NULL,
-                _hc_err character varying(255),
-                _hc_lastop character varying(255),
-                createddate timestamp without time zone NOT NULL,
-                lastmodifieddate timestamp without time zone,
-                name character varying(255) NOT NULL,
-                CONSTRAINT account_pkey PRIMARY KEY (id)
-              )
-              WITH (
-                OIDS=FALSE
-              );
-              ALTER TABLE salesforcedev.account
-                OWNER TO postgres;
-          ' -U postgres
+- psql -c 'create database herokusalesforcedb;' -U postgres
+- psql -c 'create schema if not exists public;' -U postgres
+- psql -c 'create schema if not exists salesforcedev;' -U postgres
+- psql -c "alter role postgres with password 'postgres';"
+- psql -c ' CREATE TABLE salesforcedev.account ( id bigint NOT NULL, _hc_err character
+  varying(255), _hc_lastop character varying(255), createddate timestamp without time
+  zone NOT NULL, lastmodifieddate timestamp without time zone, name character varying(255)
+  NOT NULL, CONSTRAINT account_pkey PRIMARY KEY (id) ) WITH ( OIDS=FALSE ); ALTER
+  TABLE salesforcedev.account OWNER TO postgres; ' -U postgres
