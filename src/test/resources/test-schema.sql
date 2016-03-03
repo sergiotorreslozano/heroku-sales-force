@@ -1,3 +1,11 @@
+CREATE SCHEMA IF NOT EXISTS public
+  AUTHORIZATION postgres;
+
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO public;
+COMMENT ON SCHEMA public
+  IS 'standard public schema';
+
 CREATE TABLE ticks
 (
   id bigint NOT NULL,
@@ -24,6 +32,9 @@ ALTER TABLE users
   OWNER TO postgres;
 
 
+CREATE SCHEMA IF NOT EXISTS salesforcedev
+  AUTHORIZATION postgres;  
+  
 
 CREATE TABLE salesforcedev.account
 (
