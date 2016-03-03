@@ -17,3 +17,20 @@ before_script:
   - psql -c 'create schema if not exists public;' -U postgres
   - psql -c 'create schema if not exists salesforcedev;' -U postgres
   - psql -c "alter role postgres with password 'postgres';"
+  - psql -c '
+              CREATE TABLE salesforcedev.account
+              (
+                id bigint NOT NULL,
+                _hc_err character varying(255),
+                _hc_lastop character varying(255),
+                createddate timestamp without time zone NOT NULL,
+                lastmodifieddate timestamp without time zone,
+                name character varying(255) NOT NULL,
+                CONSTRAINT account_pkey PRIMARY KEY (id)
+              )
+              WITH (
+                OIDS=FALSE
+              );
+              ALTER TABLE salesforcedev.account
+                OWNER TO postgres;
+          '
